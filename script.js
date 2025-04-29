@@ -35,35 +35,40 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 });
 
 function renderizarCards(user) {
-  const container = document.getElementById('cards-container');
-  container.classList.remove('hidden');
-
-  container.innerHTML = `
-    <div class="card">
-      <h3>Aluguel</h3>
-      <p><strong>Usuário:</strong> ${user.nome}</p>
-      <p><strong>Valor:</strong> R$ ${user.valor_aluguel.toFixed(2)}</p>
-      <p><strong>Status:</strong> <span class="status ${user.aluguel_pago ? 'pago' : 'pendente'}">${user.aluguel_pago ? 'Pago' : 'Pendente'}</span></p>
-    </div>
-    <div class="card">
-      <h3>Condomínio</h3>
-      <p><strong>Usuário:</strong> ${user.nome}</p>
-      <p><strong>Valor:</strong> R$ ${user.valor_condominio.toFixed(2)}</p>
-      <p><strong>Status:</strong> <span class="status ${user.condominio_pago ? 'pago' : 'pendente'}">${user.condominio_pago ? 'Pago' : 'Pendente'}</span></p>
-    </div>
-    <div class="card">
-      <h3>Aluguel + Condomínio (com desconto)</h3>
-      <p><strong>Usuário:</strong> ${user.nome}</p>
-      <p><strong>Valor:</strong> R$ ${user.valor_com_desconto.toFixed(2)}</p>
-      <p><strong>Status:</strong> <span class="status ${user.pago_com_desconto ? 'pago' : 'pendente'}">${user.pago_com_desconto ? 'Pago' : 'Pendente'}</span></p>
-    </div>
-  `;
-}
-
-document.getElementById('logout-btn').addEventListener('click', () => {
-    document.getElementById('cards-container').classList.add('hidden');
-    document.getElementById('login-container').classList.remove('hidden');
-    document.getElementById('login-form').reset();
-    document.getElementById('erro').textContent = '';
-  });
+    const container = document.getElementById('cards-container');
+    container.classList.remove('hidden');
+  
+    container.innerHTML = `
+      <button id="logout-btn">Sair</button>
+  
+      <div class="card">
+        <h3>Aluguel</h3>
+        <p><strong>Usuário:</strong> ${user.nome}</p>
+        <p><strong>Valor:</strong> R$ ${user.valor_aluguel.toFixed(2)}</p>
+        <p><strong>Status:</strong> <span class="status ${user.aluguel_pago ? 'pago' : 'pendente'}">${user.aluguel_pago ? 'Pago' : 'Pendente'}</span></p>
+      </div>
+  
+      <div class="card">
+        <h3>Condomínio</h3>
+        <p><strong>Usuário:</strong> ${user.nome}</p>
+        <p><strong>Valor:</strong> R$ ${user.valor_condominio.toFixed(2)}</p>
+        <p><strong>Status:</strong> <span class="status ${user.condominio_pago ? 'pago' : 'pendente'}">${user.condominio_pago ? 'Pago' : 'Pendente'}</span></p>
+      </div>
+  
+      <div class="card">
+        <h3>Aluguel + Condomínio (com desconto)</h3>
+        <p><strong>Usuário:</strong> ${user.nome}</p>
+        <p><strong>Valor:</strong> R$ ${user.valor_com_desconto.toFixed(2)}</p>
+        <p><strong>Status:</strong> <span class="status ${user.pago_com_desconto ? 'pago' : 'pendente'}">${user.pago_com_desconto ? 'Pago' : 'Pendente'}</span></p>
+      </div>
+    `;
+  
+    // Agora que o botão foi inserido, adicionamos o event listener
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      document.getElementById('cards-container').classList.add('hidden');
+      document.getElementById('login-container').classList.remove('hidden');
+      document.getElementById('login-form').reset();
+      document.getElementById('erro').textContent = '';
+    });
+  }
   
